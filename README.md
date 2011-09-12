@@ -9,9 +9,10 @@ This library requires that the ``pygame`` library be installed on your system.
 Example
 -------
 
-There are examples in the ``examples/`` directory. To run, e.g., the classic square tunnel example:
+There are examples in the source directory. To run, e.g., the classic square
+tunnel example:
 
-    $ python examples/tunnel.py
+    $ python tunnel.py
 
 Copying
 -------

@@ -131,6 +131,14 @@ def _flip():
 	pygame.display.flip()
 	_s.pump()
 
+def screen_size():
+	global _s
+	return (_s.screen.get_width(), _s.screen.get_height())
+
+def save_screen(name):
+	global _s
+	pygame.image.save(_s.screen, "%s.png" % (name,))
+
 ### TEXT SUPPORT
 	
 def write(s, no_line_break = False):
@@ -199,6 +207,11 @@ def line(x1, y1, x2, y2, width=1):
 def rectangle(x, y, w, h, width=0):
 	global _s
 	pygame.draw.rect(_s.screen, _s.fore, pygame.Rect(x, y, w, h), width)
+	_flip()
+
+def circle(x, y, r, width=0):
+	global _s
+	pygame.draw.circle(_s.screen, _s.fore, (x, y), r, width)
 	_flip()
 
 # Initial setup

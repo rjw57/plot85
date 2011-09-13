@@ -6,6 +6,14 @@ Requirements
 
 This library requires that the ``pygame`` library be installed on your system.
 
+Installation
+------------
+
+Installation is via the standard ``setup.py`` mechanism:
+
+    $ python setup.py build
+    $ sudo python setup.py install
+
 Example
 -------
 

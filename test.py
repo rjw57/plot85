@@ -3,12 +3,9 @@ from pi.maths import *
 
 (w, h) = screen_size()
 
-last = (0, 0)
 for i in range(0, 200):
-	new = (randomint(0, w), randomint(0, h))
 	foreground(randomint(0, 255), randomint(0, 255), randomint(0, 255))
-	line(last[0], last[1], new[0], new[1])
-	last = new
+	line(randomint(0, w), randomint(0, h))
 
 for i in range(0, 20):
 	foreground(randomint(0, 255), randomint(0, 255), randomint(0, 255))

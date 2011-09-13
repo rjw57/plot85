@@ -20,10 +20,11 @@ twist = 0.05
 
 for i in range(0, 200):
 	# Draw the current square
-	line(x1, y1, x2, y2)
-	line(x2, y2, x3, y3)
-	line(x3, y3, x4, y4)
-	line(x4, y4, x1, y1)
+	move(x1, y1)
+	line(x2, y2)
+	line(x3, y3)
+	line(x4, y4)
+	line(x1, y1)
 
 	# Work out the new co-ordinates
 	new_x1 = twist * x2 + (1 - twist) * x1

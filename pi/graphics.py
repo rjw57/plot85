@@ -23,6 +23,15 @@ class State(object):
 		self._sys_em = self._sys_font.size('m')[0]
 		self._cursor_save = pygame.Surface((self._sys_em, self._sys_lh))
 
+		# Graphic cursors, first element is last visited location
+		self._cursor = [(0,0), (0,0)]
+
+	def move(self, to):
+		self._cursor = [to] + self._cursor[:-1]
+	
+	def at(self, idx=0):
+		return self._cursor[idx]
+
 	### TEXT IO	
 	
 	def _draw_cursor(self):
@@ -199,14 +208,27 @@ def background(r, g, b):
 	global _s
 	_s.back = pygame.Color(r, g, b)
 
-def line(x1, y1, x2, y2, width=1):
+def move(x, y):
 	global _s
-	pygame.draw.line(_s.screen, _s.fore, (x1, y1), (x2, y2), width)
+	_s.move((x,y))
+
+def line(x, y, width=1):
+	global _s
+	last = _s.at()
+	pygame.draw.line(_s.screen, _s.fore, last, (x, y), width)
+	_s.move((x, y))
 	_flip()
 
-def rectangle(x, y, w, h, width=0):
+def rectangle(x, y, width=0):
 	global _s
-	pygame.draw.rect(_s.screen, _s.fore, pygame.Rect(x, y, w, h), width)
+	last = _s.at()
+	this = (x, y)
+	mx = min(last[0], this[0])
+	my = min(last[1], this[1])
+	w = abs(last[0] - this[0])
+	h = abs(last[1] - this[1])
+	pygame.draw.rect(_s.screen, _s.fore, pygame.Rect(mx, my, w, h), width)
+	_s.move(this)
 	_flip()
 
 def circle(x, y, r, width=0):

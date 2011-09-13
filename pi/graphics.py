@@ -10,7 +10,7 @@ pygame.init()
 
 class State(object):
 	def __init__(self):
-		self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+		self.screen = pygame.display.set_mode((640, 480))
 		self.events = []
 
 		self.fore = pygame.Color(255, 255, 0)

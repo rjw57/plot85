@@ -93,6 +93,9 @@ class State(object):
 
 		return False
 
+	def tab(self, x, y):
+		self._text_cursor = (x * self._sys_em, y * self._sys_lh)
+
 	### EVENT HANDLING
 	
 	def _new_events(self, evs):
@@ -198,6 +201,7 @@ def clear():
 	"""Clear the screen to the current background colour."""
 	global _s
 	_s.screen.fill(_s.back)
+	_s.tab(0,0)
 	_flip()
 
 def foreground(r, g, b):
@@ -216,6 +220,15 @@ def line(x, y, width=1):
 	global _s
 	last = _s.at()
 	pygame.draw.line(_s.screen, _s.fore, last, (x, y), width)
+	_s.move((x, y))
+	_flip()
+
+def triangle(x, y, width=0):
+	global _s
+	a = _s.at(1)
+	b = _s.at(0)
+	c = (x, y)
+	pygame.draw.polygon(_s.screen, _s.fore, (a, b, c), width)
 	_s.move((x, y))
 	_flip()
 
